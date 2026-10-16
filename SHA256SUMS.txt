@@ -1,0 +1,2 @@
+9069af4af5c12542b18bd3d478a5efabacdcbad41196d82ed30dff09917f8914  CompShareStart-v0.4.6-source.zip
+cab8e4557173f107400d6fab81f8f01af23bb890a3eade5710fda445894cde02  CompShareStart-v0.4.6-windows-x64.zip
