@@ -1,0 +1,8 @@
+{
+  "instance_id": "",
+  "region": "",
+  "zone": "",
+  "project_id": "",
+  "interval_seconds": 10,
+  "max_wait_minutes": 120
+}
