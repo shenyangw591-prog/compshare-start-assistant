@@ -1,5 +1,9 @@
 # CompShare 开机助手
 
+**[下载 Windows 免安装版 v0.4.6](https://github.com/shenyangw591-prog/compshare-start-assistant/releases/download/v0.4.6/CompShareStart-v0.4.6-windows-x64.zip)** · [查看所有版本](https://github.com/shenyangw591-prog/compshare-start-assistant/releases)
+
+下载 ZIP 后右键「全部解压」，打开文件夹，双击 `CompShareStart.exe`。
+
 **优云智算已有 GPU 实例自动重试开机，给不想一直守着控制台点开机的人。**
 
 中文图形界面 · 无需填写实例 ID · 缺卡自动等待 · 成功弹窗与提示音 · 可加密记住密钥
@@ -20,7 +24,7 @@
 
 ### 普通用户：Windows 免安装版
 
-从本仓库的 **Releases** 获取 `CompShareStart-v0.4.6-windows-x64.zip`，解压后双击 `CompShareStart.exe`。**不需要安装 Python，不需要管理员权限。**支持 Windows 10 / 11 x64。
+从本仓库的 **[Releases](https://github.com/shenyangw591-prog/compshare-start-assistant/releases)** 获取 `CompShareStart-v0.4.6-windows-x64.zip`，解压后双击 `CompShareStart.exe`。 **不需要安装 Python，不需要管理员权限。** 支持 Windows 10 / 11 x64。
 
 更新时先关闭旧版，将新包解压到一个新文件夹，再运行其中的 EXE。窗口标题应显示 **v0.4.6**，运行记录也会显示版本号。保存的密钥位于用户目录，更新程序后仍可自动填入。
 
