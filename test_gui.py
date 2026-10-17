@@ -204,8 +204,13 @@ class GuiTests(unittest.TestCase):
             with self.subTest(scale=scale):
                 app=App(ui_scale=scale)
                 try:
+                    # CI desktops may be smaller than the scaled test window.
+                    # Override Tk's screen-based maximum so the requested size is tested.
+                    app.maxsize(round(1920*scale), round(1080*scale))
                     app.geometry(f"{round(900*scale)}x{round(680*scale)}")
                     app.update()
+                    self.assertGreaterEqual(app.winfo_width(), round(900*scale))
+                    self.assertGreaterEqual(app.winfo_height(), round(680*scale))
                     for name in ("connect_button","start_button","stop_button","console_button",
                                  "tree","selection_label","log_toggle", "remember_check", "forget_button"):
                         widget=getattr(app,name)
