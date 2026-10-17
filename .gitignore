@@ -1,0 +1,15 @@
+config.json
+credentials.bin
+credentials-*.tmp
+__pycache__/
+*.log
+.env
+.build-tools/
+.build-cache/
+build/
+dist/
+release/
+*.spec
+.venv/
+.pytest_cache/
+*.zip
