@@ -1,0 +1,62 @@
+name: Publish existing v0.4.6 packages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-existing-v046
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify the previously tested packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '9069af4af5c12542b18bd3d478a5efabacdcbad41196d82ed30dff09917f8914  CompShareStart-v0.4.6-source.zip' | sha256sum --check
+          echo 'cab8e4557173f107400d6fab81f8f01af23bb890a3eade5710fda445894cde02  CompShareStart-v0.4.6-windows-x64.zip' | sha256sum --check
+          sha256sum --check SHA256SUMS.txt
+      - name: Publish verified release attachments
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/release-notes.md" <<'NOTES'
+          ## Windows 用户下载
+          
+          请下载下方 Assets 中的 **CompShareStart-v0.4.6-windows-x64.zip**，右键「全部解压」，双击 **CompShareStart.exe**。无需安装 Python，支持 Windows 10 / 11 x64。
+          
+          ## 功能
+          
+          - 连接账户后选择已有 GPU 实例，资源不足时自动等待并重试。
+          - 支持初始化等待，确认运行后自动停止，并弹出置顶成功提示及提示音。
+          - 支持 Windows 本机加密记住密钥，下次自动填入，也可随时清除。
+          - 内置离线演示，无需密钥即可体验操作流程。
+          
+          ## 附件说明
+          
+          - windows-x64.zip：普通用户使用的 Windows 免安装版。
+          - source.zip：源码与开发文档。
+          - SHA256SUMS.txt：两个压缩包的 SHA256 校验值。
+          
+          本版本已完成离线测试和 EXE 自测。社区工具，非官方出品；真实开机结果以平台控制台为准，开机后按平台规则计费。
+          NOTES
+          gh release create v0.4.6 \
+            CompShareStart-v0.4.6-windows-x64.zip \
+            CompShareStart-v0.4.6-source.zip \
+            SHA256SUMS.txt \
+            --target "$GITHUB_SHA" \
+            --title 'v0.4.6 优云智算开机助手' \
+            --notes-file "$RUNNER_TEMP/release-notes.md" \
+            --latest
